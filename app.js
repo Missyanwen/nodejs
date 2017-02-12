@@ -11,6 +11,10 @@ var bodyParser = require('body-parser');
 
 var app = express();
 
+//bodyparser 这个设置要放路由前原因：(http://blog.csdn.net/u013438638/article/details/48953143)
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); 
+
 //设置静态文件托管目录  css/js
 //当用户访问的url是以/public开始，那么直接返回对应的文件
 app.use('/public',express.static(__dirname + '/public'))
@@ -47,12 +51,10 @@ app.get('/', function (req, res, next) {
 });
 **/
 
-//bodyparser 设置
-app.use(bodyParser.urlencoded({extended:true}));
-
 //连接数据库 在mongoose目录的bin文件下用 [mongod --dbpath=指定到哪个目录下(db目录) --port=27018] 27108是端口
 //http://mongoosejs.com/  如何去连接数据库
-mongoose.connect('mongodb://localhost:27018/blog',function(err){
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost:27017/blog',function(err){
 	if(err) {
 		console.log('数据库连接失败');
 	}else{
@@ -61,7 +63,7 @@ mongoose.connect('mongodb://localhost:27018/blog',function(err){
 		var host = server.address().address;
 		var port = server.address().port;
 
-		  console.log('Example app listening at http://%s:%s', host, port);
+		console.log('Example app listening at http://%s:%s', host, port);
 		});
 	}
 });
