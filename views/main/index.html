@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="/public/main.css"/>
+	<script type="text/javascript" src="/public/js/jquery.min.js"></script>
+	<script type="text/javascript" src="/public/js/index.js"></script>
+</head>
+<body>
+	<header>
+		你好欢迎来到中国珠海	
+	</header>
+	<main>
+		<div class="mainLeft">
+			
+		</div>
+		<div class="mainRight">
+			<div class="rightBox hide">
+				<div class="title"><span>用户信息</span></div>
+				<p><span class="colDark">admin</span></p>
+				<p><span class="colDanger">你好，你是管理员,<a href="/admin">你可以点击这里进入管理</a></span></p>
+				<p><span class="colDark"><a href="logout" id="logoutBtn">退出</a></span></p>
+			</div>
+
+			<div class="rightBox hide" id="loginBox">
+				<div class="title"><span>登录</span></div>
+				<div class="line"><span class="colDark">用户名：</span><input type="text"/><em></em></div>
+				<div class="line"><span class="colDark">密码：</span><input type="password"/><em></em></div>
+				<div class="line"><span class="colDark"></span><button>登录</button></div>
+				<p class="textRight">还没注册？<a href="javascript:void(0)" class="ColMint">马上注册</a></p>
+				<p class="colWarning textCenter"></p>	
+			</div>
+
+			<div class="rightBox " id="registerBox">
+				<div class="title"><span>注册</span></div>
+				<div class="line"><span class="colDark">用户名：</span><input name="username" type="text"/><em></em></div>
+				<div class="line"><span class="colDark">密码：</span><input name="password" type="password"/><em></em></div>
+				<div class="line"><span class="colDark">确认:</span><input name="repassword" type="password"></div>
+				<div class="line"><span class="colDark"></span><button>注册</button></div>
+				<p class="textRight">已有账号？<a href="javascript:void(0)" class="ColMint">马上登录</a></p>
+				<p class="colWarning textCenter"></p>	
+			</div>
+
+			<div class="rightBox">
+				<div class="title"><span>社区</span></div>
+				<p><a href="http://www.baidu.com" target="_blank" class="colDanger">天天快乐</a></p>
+			</div>
+		</div>
+	</main>
+</body>
+</html>
