@@ -9,11 +9,31 @@ var mongoose = require('mongoose');
 //加载body-parser,用来处理post提交过来的数据 
 var bodyParser = require('body-parser');
 
+//加载cookies模块
+var Cookies = require('cookies');
+
 var app = express();
 
 //bodyparser 这个设置要放路由前原因：(http://blog.csdn.net/u013438638/article/details/48953143)
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); 
+
+app.use(function(req,res,next){
+	req.cookies = new Cookies(req, res);
+	
+	//解析登录用户cookie信息
+	req.userInfo = {};
+
+	if(req.cookies.get('userInfo')) {
+		try {
+			req.userInfo = JSON.parse(req.cookies.get('userInfo'))
+		}catch(e) {
+
+		}
+	}
+
+	next();
+})
 
 //设置静态文件托管目录  css/js
 //当用户访问的url是以/public开始，那么直接返回对应的文件
@@ -50,6 +70,7 @@ app.get('/', function (req, res, next) {
   	res.render('index')
 });
 **/
+
 
 //连接数据库 在mongoose目录的bin文件下用 [mongod --dbpath=指定到哪个目录下(db目录) --port=27018] 27108是端口
 //http://mongoosejs.com/  如何去连接数据库

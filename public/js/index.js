@@ -39,29 +39,35 @@ $(function(){
 	});
 
   $loginBox.find('button').on('click',function(){
-
-      $.ajax({
-        type:"post",
-        url:'/api/user/login',
-        data: {
-          username:$loginBox.find('[name="username"]').val(),
-          password:$loginBox.find('[name="password"]').val()
-        },
-        dataType: 'json',
-        success: function(result) {
+    $.ajax({
+      type:"post",
+      url:'/api/user/login',
+      data: {
+        username:$loginBox.find('[name="username"]').val(),
+        password:$loginBox.find('[name="password"]').val()
+      },
+      dataType: 'json',
+      success: function(result) {
+        if(!result.code) {
+          //登录成功
+          $loginBox.find('.colWarning').html(result.message);
           if(!result.code) {
-            //登录成功
-            $loginBox.find('.colWarning').html(result.message);
-            setTimeout(function(){
-              $loginBox.hide();
-              $userInfo.show();
-              //显示登录的信息
-              $userInfo.find('.username').html(result.userInfo.username);
-              $userInfo.find('.info').html('你好，欢迎光临我的博客!')
-            },1000)
+            window.location.reload()
           }
         }
-      })
+      }
+    })
   });
+
+  $('#logout').on('click', function(){
+    $.ajax({
+      url:'/api/user/logout',
+      success:function(result) {
+        if(!result.code) {
+          window.location.reload()
+        }
+      }
+    })
+  })
 
 })
