@@ -3,7 +3,8 @@
     
 首先运行	   npm install  
 启动数据库     mongod --dbpath=D:\project\nodejs\db --port=27017  
-启动node 	     node app  
+启动node 	     node app  
+运行           127.0.0.1:3000
 
 >nodejs目录结构  
       - db 存放数据库结构  
